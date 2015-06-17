@@ -1,0 +1,18 @@
+lang en_US
+keyboard us
+timezone Etc/UTC --isUtc
+#platform x86, AMD64, or Intel EM64T
+reboot
+cdrom
+bootloader --location=mbr --append="rhgb quiet crashkernel=auto"
+zerombr
+clearpart --all --initlabel
+autopart
+auth --passalgo=sha512 --useshadow
+selinux --disabled
+firewall --disabled
+skipx
+firstboot --disable
+%packages
+@base
+%end
