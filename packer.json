@@ -14,7 +14,7 @@
     "tools_upload_path": "/tmp/vmare_tools_linux.iso",
     "boot_wait": "5s",
     "boot_command": [
-      "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks_cloud.cfg<enter><wait>"
+      "<tab> text ks={{user `kickstart_file_url`}}<enter><wait>"
     ]
   }]
 }
