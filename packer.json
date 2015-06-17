@@ -10,15 +10,12 @@
     "iso_checksum": "b6c57194130025cecc036676d43235508f4031d99041051ea1c61e259bd95903",
     "iso_checksum_type": "sha256",
     "ssh_username": "root",
-    "ssh_wait_timeout": "30s",
+    "ssh_wait_timeout": "60s",
     "shutdown_command": "shutdown -P now",
 	"headless": "false",
 	"tools_upload_flavor": "linux",
 	"tools_upload_path": "/tmp/vmare_tools_linux.iso",
-	"boot_wait": "10s",
-	"boot_command": [
-	  "<enter><wait><enter>"
-    ]
+	"boot_wait": "5s"
   }]
 }
 
