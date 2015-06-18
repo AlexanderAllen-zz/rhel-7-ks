@@ -17,7 +17,7 @@
     "tools_upload_path": "/tmp/vmare_tools_linux.iso",
     "boot_wait": "5s",
     "boot_command": [
-      "<tab> text ks={{user `kickstart_file_url`}}<enter><wait>"
+      "<tab> noshell text ks={{user `kickstart_file_url`}}<enter><wait>"
     ]
   }],
   "post-processors": [
