@@ -2,8 +2,8 @@
   "builders": [{
     "vm_name": "packer-rhel7",
     "type": "vmware-iso",
-    "iso_url": "rhel-workstation-7.1-x86_64-boot.iso",
-    "iso_checksum": "b6c57194130025cecc036676d43235508f4031d99041051ea1c61e259bd95903",
+    "iso_url": "rhel-workstation-7.1-x86_64-dvd.iso",
+    "iso_checksum": "284b2280638a63a13ccd5266cabb7477d15aa1ff83b01a872f33235313daa61f",
     "iso_checksum_type": "sha256",
     "output_directory": "packer_rhel_7",
     "ssh_username": "root",
