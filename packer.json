@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "kickstart_file_url": "https://raw.githubusercontent.com/AlexanderAllen/rhel-7-ks/master/anaconda_ks.cfg"
+  },  
   "builders": [{
     "vm_name": "packer-rhel7",
     "type": "vmware-iso",
