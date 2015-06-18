@@ -7,7 +7,7 @@
     "iso_checksum_type": "sha256",
     "output_directory": "packer_rhel_7",
     "ssh_username": "root",
-    "ssh_wait_timeout": "60s",
+    "ssh_wait_timeout": "20m",
     "shutdown_command": "shutdown -P now",
     "headless": "false",
     "tools_upload_flavor": "linux",
