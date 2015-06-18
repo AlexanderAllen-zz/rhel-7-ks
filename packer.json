@@ -17,15 +17,13 @@
       "<tab> text ks={{user `kickstart_file_url`}}<enter><wait>"
     ]
   }],
-  {
-    "post-processors": [
-      { 
-        "type": "vagrant", 
-        "compression_level": 6,
-        "keep_input_artifact": false,
-        "output": "packer_rhel7_{{.BuildName}}_{{.Provider}}.box"
-      }
-    ]
-  }  
+  "post-processors": [
+    { 
+      "type": "vagrant", 
+      "compression_level": 6,
+      "keep_input_artifact": false,
+      "output": "packer_rhel7_{{.BuildName}}_{{.Provider}}.box"
+    }
+  ]  
 }
 
