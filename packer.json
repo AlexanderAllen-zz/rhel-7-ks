@@ -17,6 +17,11 @@
     "tools_upload_flavor": "linux",
     "tools_upload_path": "/tmp/vmare_tools_linux.iso",
     "boot_wait": "5s",
+    "vmx_data": {
+      "cpuid.coresPerSocket": "1",
+      "memsize": "512",
+      "numvcpus": "1"
+    },
     "boot_command": [
       "<tab> noshell text ks={{user `kickstart_file_url`}}<enter><wait>"
     ]
