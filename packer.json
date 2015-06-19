@@ -1,6 +1,6 @@
 {
   "variables": {
-    "kickstart_file_url": "https://raw.githubusercontent.com/AlexanderAllen/rhel-7-ks/master/anaconda_ks.cfg"
+    "kickstart_file_url": "https://raw.githubusercontent.com/AlexanderAllen/rhel-7-ks/master/http/ks7.cfg"
   },  
   "builders": [{
     "vm_name": "rhel71",
