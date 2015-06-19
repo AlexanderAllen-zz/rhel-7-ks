@@ -1,14 +1,17 @@
 {
   "variables": {
-    "kickstart_file_url": "https://raw.githubusercontent.com/AlexanderAllen/rhel-7-ks/master/http/ks7.cfg"
-  },  
-  "builders": [{
-    "vm_name": "rhel71",
-    "type": "vmware-iso",
+    "project_name": "rhel71",
+    "kickstart_file_url": "file://http/ks7.cfg",
     "iso_url": "rhel-workstation-7.1-x86_64-dvd.iso",
-    "iso_checksum": "284b2280638a63a13ccd5266cabb7477d15aa1ff83b01a872f33235313daa61f",
+    "iso_checksum": "284b2280638a63a13ccd5266cabb7477d15aa1ff83b01a872f33235313daa61f"
+  },
+  "builders": [{
+    "vm_name": "{{user `project_name`}}",
+    "type": "vmware-iso",
+    "iso_url": "{{user `iso_url`}}",
+    "iso_checksum": "{{user `iso_checksum`}}",
     "iso_checksum_type": "sha256",
-    "output_directory": "packer_rhel_71",
+    "output_directory": "{{user `project_name`}}_{{.Provider}}",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "20m",
@@ -36,12 +39,13 @@
     }
   ],
   "post-processors": [
-    { 
-      "type": "vagrant", 
+    {
+      "type": "vagrant",
+      "only": ["vmware-iso"],
       "compression_level": 6,
       "keep_input_artifact": false,
-      "output": "rhel71_{{.Provider}}.box"
+      "output": "{{user `project_name`}}_{{.Provider}}.box"
     }
-  ]  
+  ]
 }
 
