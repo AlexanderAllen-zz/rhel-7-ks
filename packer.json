@@ -26,6 +26,15 @@
       "<tab> noshell text ks={{user `kickstart_file_url`}}<enter><wait>"
     ]
   }],
+  "provisioners": [
+    {
+      "type": "ansible-local",
+      "only": ["vmware-iso"],
+      "playbook_file": "../provisioners/ansible/playbook.yml",
+      "playbook_dir": "../provisioners/ansible",
+      "staging_directory": "/tmp/packer-provisioner-ansible-local"
+    }
+  ],
   "post-processors": [
     { 
       "type": "vagrant", 
