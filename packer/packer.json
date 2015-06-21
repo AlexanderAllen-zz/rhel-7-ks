@@ -3,7 +3,11 @@
     "project_name": "rhel71",
     "kickstart_file_url": "https://raw.githubusercontent.com/AlexanderAllen/rhel-7-ks/master/http/ks7.cfg",
     "iso_url": "../iso/rhel-workstation-7.1-x86_64-dvd.iso",
-    "iso_checksum": "284b2280638a63a13ccd5266cabb7477d15aa1ff83b01a872f33235313daa61f"
+    "iso_checksum": "284b2280638a63a13ccd5266cabb7477d15aa1ff83b01a872f33235313daa61f",
+    "artifact_directory": "../artifacts",
+    "vagrant_directory": "../vagrant",
+    "vagrant_compression": 0,
+    "vagrant_keep_artifact": true
   },
   "builders": [{
     "vm_name": "{{user `project_name`}}",
@@ -11,7 +15,7 @@
     "iso_url": "{{user `iso_url`}}",
     "iso_checksum": "{{user `iso_checksum`}}",
     "iso_checksum_type": "sha256",
-    "output_directory": "{{user `project_name`}}_{{.Provider}}",
+    "output_directory": "{{user `artifact_directory`}}/{{user `project_name`}}_{{.Provider}}",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
     "ssh_wait_timeout": "20m",
@@ -31,20 +35,52 @@
   }],
   "provisioners": [
     {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "inline": [
+        "script/fix-slow-dns.sh",
+        "script/sshd.sh",
+      ],
+      "inline_shebang": "/bin/sh",
+      "type": "shell"
+    },
+    {
+      "environment_vars": [
+        "CM={{user `cm`}}",
+        "CM_VERSION={{user `cm_version`}}",
+        "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+        "UPDATE={{user `update`}}",
+        "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
+        "SSH_USERNAME={{user `ssh_username`}}",
+        "SSH_PASSWORD={{user `ssh_password`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+      "scripts": [
+        "script/fix-slow-dns.sh",
+        "script/sshd.sh",
+        "script/update.sh",
+        "script/vagrant.sh",
+        "script/vmtool.sh",
+        "script/cmtool.sh",
+        "script/cleanup.sh"
+      ],
+      "type": "shell"
+    },
+    {
       "type": "ansible-local",
       "only": ["vmware-iso"],
       "playbook_file": "../provisioners/ansible/playbook.yml",
       "playbook_dir": "../provisioners/ansible",
-      "staging_directory": "/tmp/packer-provisioner-ansible-local"
+      "inventory_file": "../provisioners/ansible/hosts",
+      "staging_directory": "/tmp/packer_ansible"
     }
   ],
   "post-processors": [
     {
       "type": "vagrant",
       "only": ["vmware-iso"],
-      "compression_level": 6,
-      "keep_input_artifact": false,
-      "output": "{{user `project_name`}}_{{.Provider}}.box"
+      "compression_level": "{{user `vagrant_compression`}}",
+      "keep_input_artifact": true,
+      "output": "{{user `vagrant_directory`}}/{{user `project_name`}}_{{.Provider}}.box"
     }
   ]
 }
