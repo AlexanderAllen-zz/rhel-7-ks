@@ -37,8 +37,9 @@
     {
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "inline": [
-        "script/fix-slow-dns.sh",
-        "script/sshd.sh",
+        "yum group install \"Development Tools\"",
+        "yum install python-pip python-devel",
+        "pip install ansible"
       ],
       "inline_shebang": "/bin/sh",
       "type": "shell"
