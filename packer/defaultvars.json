@@ -1,0 +1,11 @@
+{
+  "kickstart_file_url": "https://raw.githubusercontent.com/AlexanderAllen/rhel-7-ks/master/http/ks7.cfg",
+  "iso_url": "../iso/rhel-workstation-7.1-x86_64-dvd.iso",
+  "iso_checksum": "284b2280638a63a13ccd5266cabb7477d15aa1ff83b01a872f33235313daa61f",
+  "artifact_directory": "../artifacts",
+  "vagrant_directory": "../vagrant",
+  "ssh_username": "vagrant",
+  "ssh_password": "vagrant",
+  "rhsm_user": "",
+  "rhsm_password": ""
+}
