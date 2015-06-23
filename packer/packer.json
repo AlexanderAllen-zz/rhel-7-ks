@@ -21,11 +21,11 @@
     "iso_url": "{{user `iso_url`}}",
     "iso_checksum": "{{user `iso_checksum`}}",
     "iso_checksum_type": "sha256",
-    "output_directory": "{{user `artifact_directory`}}/{{user `project_name`}}_{{.Provider}}",
+    "output_directory": "{{user `artifact_directory`}}/{{user `project_name`}}",
     "ssh_username": "{{user `ssh_username`}}",
     "ssh_password": "{{user `ssh_password`}}",
     "ssh_wait_timeout": "20m",
-    "shutdown_command": "shutdown -P now",
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
     "headless": "{{user `headless`}}",
     "tools_upload_flavor": "linux",
     "tools_upload_path": "/tmp/vmare_tools_linux.iso",
@@ -52,20 +52,11 @@
       "scripts": [
         "../provisioners/script/sshd.sh",
         "../provisioners/script/redhat.sh",
-        "../provisioners/script/update.sh",
-        "../provisioners/script/ansible.sh",
         "../provisioners/script/vmtool.sh",
+        "../provisioners/script/vagrant.sh",
         "../provisioners/script/cleanup.sh"
       ],
       "type": "shell"
-    },
-    {
-      "type": "ansible-local",
-      "only": ["vmware-iso"],
-      "playbook_file": "../provisioners/ansible/playbook.yml",
-      "playbook_dir": "../provisioners/ansible",
-      "inventory_file": "../provisioners/ansible/hosts",
-      "staging_directory": "/tmp/packer_ansible"
     }
   ],
   "post-processors": [

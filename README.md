@@ -13,3 +13,8 @@ vagrant
 * Purpose *
 
 Study Guide for RHEL 7 certification.
+
+*Making the box available to Vagrant*
+
+vagrant box add rhel71_vmware.box --provider=vmware_fusion --name rhel71_vmware.box
+vagrant box add rhel71_vmware.box --name=rhel71_vmware.box
